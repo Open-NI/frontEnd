@@ -8,6 +8,7 @@ function App() {
   const voiceRef = useRef(null)
   const [showNI, setShowNI] = useState(false)
   const [speaking, setSpeaking] = useState(false)
+  const [listening, setListening] = useState(false)
   const chatRef = useRef();
   const introMessage = `Good morning, John. Had a good night's sleep? 
   Should we review your code today? Or would you like to continue pretending
@@ -61,11 +62,13 @@ function App() {
     if (spacePressed && !previousSpacePressed.current) {
       // spacePressed changed from false to true
       mediaRecorder.start();
+      setListening(true)
     }
 
     if (!spacePressed && previousSpacePressed.current) {
       // spacePressed changed from true to false
       mediaRecorder.stop();
+      setListening(false)
     }
 
     previousSpacePressed.current = spacePressed;
@@ -186,7 +189,7 @@ function App() {
       
       {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <AgentScreen chatRef={chatRef} speaking={speaking} gender={true}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} gender={true}
            language={"English"} flag={"sh"}/>
       </div>
 
