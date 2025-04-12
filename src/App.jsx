@@ -15,6 +15,10 @@ function App() {
   Should we review your code today? Or would you like to continue pretending
   to be a girl online?`
 
+  const aliceBio = `My name is Alice. I like nothing more than going home early on a Friday afternoon, 
+                    logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
+                    a pet iguana.`
+
   // Intro Animation
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -230,8 +234,8 @@ function App() {
       
       {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} gender={true}
-           language={"English"} flag={"sh"}/>
+          <AgentScreen chatRef={chatRef} name="Alice" listening={spacePressed} speaking={speaking} gender={true}
+           language={"English"} flag={"sh"} bio={aliceBio}/>
       </div>
 
     </div>

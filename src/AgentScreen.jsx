@@ -4,7 +4,8 @@ import Chat from './Chat'
 import Microphone from './Microphone'
 
 export default function AgentScreen(
-   {chatRef, speaking, listening, gender, language, flag}
+   {chatRef, speaking, name, listening, gender, language, flag, bio}
+
 ) {
 
     return (
@@ -20,11 +21,13 @@ export default function AgentScreen(
             </div>
 
             <div className='max-w-160 bg-h-full bg-[#272727] rounded-2xl shadow-[12px_12px_20px_rgba(0,0,0,0.4)]'>
-                <Agent 
+                <Agent
+                name={name}
                 speaking={speaking}
                 gender={gender}
                 language={language}
                 flag={flag}
+                bio={bio}
                 />
             </div>
 
