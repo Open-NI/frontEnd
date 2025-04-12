@@ -141,6 +141,7 @@ function App() {
         
         const result2 = await response2.json();
         console.log(result2);
+        playVoice(`/api/v1/audio/${result2.tts_audio_base64}`)
         setLastId(result2.action_id)
       }
 
