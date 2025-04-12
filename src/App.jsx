@@ -1,7 +1,6 @@
 import './app.css'
 import { useEffect, useRef, useState } from 'react'
-import Agent from './Agent'
-import Chat from './Chat'
+import AgentScreen from './AgentScreen'
 
 
 function App() {
@@ -84,21 +83,10 @@ function App() {
         </div>
       </div>
       
-      {/*Main Screen*/}
+      {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <div className='w-full flex items-center justify-center'>
-
-              <div className='min-w-150 min-h-100 flex justify-center items-center'>
-                <Chat ref={chatRef}/>
-              </div>
-
-              <Agent 
-              speaking={speaking}
-              gender={true}
-              language={"English"}
-              flag={"sh"}
-              />
-            </div>
+          <AgentScreen chatRef={chatRef} speaking={speaking} gender={true}
+           language={"English"} flag={"sh"}/>
       </div>
 
       {/* <button className='absolute top-0 left-0 bg-[#F7971D] w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
