@@ -46,7 +46,7 @@ export default function Agent({speaking, name, gender, language, flag, bio, imgU
             <div className='font-semibold text-2xl text-white'>
                 <h1>About me</h1>
             </div>
-            <div>
+            <div className='h-20'>
                 <p>{bio}
                 </p>
             </div>

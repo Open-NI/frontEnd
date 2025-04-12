@@ -20,6 +20,9 @@ function App() {
                     logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
                     a pet iguana.`
 
+  const dylanBio = `My name is Dylan. Why did the chicken cross the road?
+   Fuck you. I am funny`
+
   // Intro Animation
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -256,7 +259,7 @@ function App() {
            gender={false}
            language={"English"} 
            flag={"us"} 
-           bio={aliceBio} 
+           bio={dylanBio} 
            imageURL={"/dylan.png"} 
            location={"Boston, USA"}
            siriColor={"#2b60ff"}/>  
