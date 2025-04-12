@@ -8,18 +8,20 @@ export default function AgentScreen(
 
     return (
         <>
-        <div className='w-full flex items-center justify-center'>
+        <div className='w-3/5 flex items-center justify-center bg-gray-900 rounded-4xl'>
 
             <div className='min-w-150 min-h-100 flex justify-center items-center'>
-            <Chat ref={chatRef}/>
+                <Chat ref={chatRef}/>
             </div>
 
-            <Agent 
-            speaking={speaking}
-            gender={gender}
-            language={language}
-            flag={flag}
-            />
+            <div className=''>
+                <Agent 
+                speaking={speaking}
+                gender={gender}
+                language={language}
+                flag={flag}
+                />
+            </div>
 
         </div>
         </>
