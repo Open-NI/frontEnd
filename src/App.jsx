@@ -141,7 +141,7 @@ function App() {
       setSpeaking(true); // Start SiriWave
       playVoice('/john.wav'); // Play audio
       handleSendMessage(introMessage, true); // Add message
-    }, 5000); // Delay in milliseconds (1000 = 1 second)
+    }, 4000); // Delay in milliseconds (1000 = 1 second)
   
     return () => clearTimeout(timeout); // Cleanup if unmounted early
   }, []);
