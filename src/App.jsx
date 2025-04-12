@@ -9,6 +9,7 @@ function App() {
   const [showNI, setShowNI] = useState(false)
   const [speaking, setSpeaking] = useState(false)
   const [listening, setListening] = useState(false)
+  const [lastId, setLastId] = useState(null)
   const chatRef = useRef();
   const introMessage = `Good morning, John. Had a good night's sleep? 
   Should we review your code today? Or would you like to continue pretending
@@ -32,8 +33,30 @@ function App() {
     return () => clearTimeout(timeout)
     
   }, [])
-  
-
+  async function getActionStatus() {
+    console.log('This runs every 200ms');
+      // Your repeated logic here
+      if(lastId) {
+        const response = await fetch(`/api/v1/action-runner/status/${lastId}`);
+        const result = await response.json();
+        console.log(result);
+        if(result.status === "completed") {
+          console.log("Action completed");
+          setLastId(null);
+          handleSendMessage(result.result, true);
+        }else if(result.status === "failed") {
+          console.log("Action failed");
+          setLastId(null);
+          handleSendMessage("I'm sorry, I didn't understand that. Please try again.", true);
+        }
+      }
+  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getActionStatus();
+    }, 350);
+    return () => clearInterval(interval);
+  }, [lastId]);
 
   const [spacePressed, setSpacePressed] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
@@ -99,6 +122,24 @@ function App() {
       if(result.text) {
         const text = result.text
         console.log("Text:", text);
+        const data = {
+          user: "Micka",
+          request_message: text,
+          voice: "af_heart",
+        };
+        
+        const response2 = await fetch("/api/v1/action-runner/begin", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data),
+        });
+        
+        const result2 = await response2.json();
+        console.log(result2);
+        setLastId(result2.action_id)
       }
 
       handleSendMessage(result.text, false)
