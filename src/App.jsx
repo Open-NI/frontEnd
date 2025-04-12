@@ -28,7 +28,70 @@ function App() {
     
   }, [])
   
+
+
   const [spacePressed, setSpacePressed] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const audioChunks = useRef([]);
+  const previousSpacePressed = useRef(false);
+
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+      const recorder = new MediaRecorder(stream);
+      setMediaRecorder(recorder);
+
+      recorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunks.current.push(event.data);
+        }
+      };
+
+      recorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
+        sendToAPI(audioBlob);
+        audioChunks.current = [];
+      };
+    });
+  }, []);
+
+  // Detect state change from false to true
+  useEffect(() => {
+    if (!mediaRecorder) return;
+
+    if (spacePressed && !previousSpacePressed.current) {
+      // spacePressed changed from false to true
+      mediaRecorder.start();
+    }
+
+    if (!spacePressed && previousSpacePressed.current) {
+      // spacePressed changed from true to false
+      mediaRecorder.stop();
+    }
+
+    previousSpacePressed.current = spacePressed;
+  }, [spacePressed, mediaRecorder]);
+
+  const sendToAPI = async (audioBlob) => {
+    const formData = new FormData();
+    formData.append("file", audioBlob, "speech.wav"); // pomembno: ime polja je "file", kot v curl
+  
+    try {
+      const response = await fetch("/api/speech-to-text?language=en", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          // Content-Type se ne nastavlja ročno pri FormData — brskalnik ga doda sam z mejo (boundary)
+        },
+        body: formData,
+      });
+  
+      const result = await response.json();
+      console.log("API response:", result);
+    } catch (error) {
+      console.error("Error sending voice to API:", error);
+    }
+  };
+  
 
   useEffect(() => {
     const handleKeyDown = (e) => {
