@@ -1,12 +1,15 @@
 import './app.css'
 import { useEffect, useRef, useState } from 'react'
-import AudioVisualizer from './Siri'
+import Agent from './Agent'
+import Chat from './Chat'
+
 
 function App() {
   const introRef = useRef(new Audio('/intro.mp3'))
   const voiceRef = useRef(null)
   const [showNI, setShowNI] = useState(false)
   const [speaking, setSpeaking] = useState(false)
+  const chatRef = useRef();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -23,12 +26,33 @@ function App() {
 
   const playVoice = (url) => {
     if (voiceRef.current) {
-      voiceRef.current.pause(); // Stop any existing audio
+      voiceRef.current.pause();
     }
-    voiceRef.current = new Audio(url); // Assign new Audio instance
-    voiceRef.current.play().catch((err) => {
-      console.warn('Audio play error:', err);
-    });
+    voiceRef.current = new Audio(url);
+
+    // Get duration from metadata
+    voiceRef.current.addEventListener(
+      'loadedmetadata',
+      () => {
+        const duration = voiceRef.current.duration * 1000; // Convert to ms
+        voiceRef.current.play().catch((err) => {
+          console.warn('Audio play error:', err);
+          setSpeaking(false);
+        });
+        // Set timeout to stop speaking after duration
+        setTimeout(() => {
+          setSpeaking(false);
+        }, duration);
+      },
+      { once: true } // Remove listener after firing
+    );
+  };
+
+  const handleSendMessage = () => {
+    chatRef.current.addMessage("Hi, I'm the user.", true);  // true = user
+    setTimeout(() => {
+      chatRef.current.addMessage("Hello! I'm the bot.", false); // false = bot
+    }, 1000);
   };
 
   return (
@@ -49,24 +73,29 @@ function App() {
       </div>
       
       {/*Main Screen*/}
-      <div className='absolute top-0 left-0 w-full h-full bg-[#000000] flex items-center justify-center'>
-          <div className='relative bottom-0 right-0 w-1/3 h-1/2'>
-            <div className='absolute bottom-0 right-0'>
-              <img src="/mia.png" alt="" width={300}/>
+      <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
+          <div className='w-full flex items-center justify-center'>
+
+              <Chat ref={chatRef}/>
+
+              <Agent 
+              speaking={speaking}
+              gender={true}
+              language={"English"}
+              flag={"sh"}
+              />
             </div>
-            
-            <div className='absolute bottom-0'>
-              <AudioVisualizer playing={speaking}/>
-            </div>
-          </div>
       </div>
 
-      <button className='absolute top-0 left-0 bg-white w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
-      onClick={() => {
-        setSpeaking(!speaking)
-        playVoice('/sample.wav')
-        setSpeaking(!speaking)
-      }}>
+      <button className='absolute top-0 left-0 bg-[#F7971D] w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
+      // onClick={() => {
+      //   setSpeaking(true); // Start SiriWave
+      //   playVoice('/john.wav'); // Play audio, handle duration
+      // }}>
+
+      onClick={handleSendMessage}
+      >
+
               <div>
                 Click
               </div>
