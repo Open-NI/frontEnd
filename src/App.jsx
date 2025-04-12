@@ -76,7 +76,7 @@ function App() {
     formData.append("file", audioBlob, "speech.wav"); // pomembno: ime polja je "file", kot v curl
   
     try {
-      const response = await fetch("/api/speech-to-text?language=en", {
+      const response = await fetch("/api/v1/human/speech-to-text?language=en", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -87,7 +87,13 @@ function App() {
   
       const result = await response.json();
 
+
       console.log("API response:", result);
+      if(result.text) {
+        const text = result.text
+        console.log("Text:", text);
+      }
+
       handleSendMessage(result.text, false)
     } catch (error) {
       console.error("Error sending voice to API:", error);
