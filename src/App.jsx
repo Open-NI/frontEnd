@@ -13,7 +13,7 @@ function App() {
   Should we review your code today? Or would you like to continue pretending
   to be a girl online?`
 
-  // Intro Pornhub Animation
+  // Intro Animation
   useEffect(() => {
     const timeout = setTimeout(() => {
       // Show animation
@@ -25,7 +25,37 @@ function App() {
     }, 300)
 
     return () => clearTimeout(timeout)
+    
   }, [])
+  
+  const [spacePressed, setSpacePressed] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Space' && !spacePressed) {
+        console.log('Space pressed');
+        setSpacePressed(true);
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.code === 'Space') {
+        console.log('Space released');
+        setSpacePressed(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
+
+  
+
 
   // Bot Greeting
   useEffect(() => {
