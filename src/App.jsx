@@ -180,7 +180,7 @@ function App() {
       
       {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <AgentScreen userChatRef={chatRef} speaking={speaking} gender={true}
+          <AgentScreen chatRef={chatRef} speaking={speaking} gender={true}
            language={"English"} flag={"sh"}/>
       </div>
 
