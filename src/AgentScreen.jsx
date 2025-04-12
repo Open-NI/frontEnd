@@ -13,9 +13,8 @@ export default function AgentScreen(
         <div className='w-4/5 flex items-center justify-center bg-[#1a1a1a] rounded-4xl p-10 gap-10'>
 
             <div className='w-full h-full flex flex-col justify-between items-center gap-20'>
-                <div className='w-150 h-120 max-h 120 overflow-y-auto flex flex-col justify-center items-center shadow-[12px_12px_20px_rgba(0,0,0,0.4)]'>
-                    <Chat ref={chatRef} />
-                    
+                <div className='w-150 px-5 h-150 max-h-150 overflow-y-auto flex flex-col justify-center items-center shadow-[12px_12px_20px_rgba(0,0,0,0.4)]'>
+                    <Chat ref={chatRef} /> 
                 </div>
                 <Microphone isRecording={listening}/>
             </div>
@@ -28,6 +27,8 @@ export default function AgentScreen(
                 language={language}
                 flag={flag}
                 bio={bio}
+                imgUrl={"/mia.png"}
+                location={"London, UK"}
                 />
             </div>
 
