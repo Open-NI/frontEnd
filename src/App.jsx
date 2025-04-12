@@ -120,6 +120,7 @@ function App() {
 
       console.log("API response:", result);
       if(result.text) {
+        handleSendMessage(result.text, false)
         const text = result.text
         console.log("Text:", text);
         const data = {
@@ -142,7 +143,7 @@ function App() {
         setLastId(result2.action_id)
       }
 
-      handleSendMessage(result.text, false)
+      
     } catch (error) {
       console.error("Error sending voice to API:", error);
     }
