@@ -11,7 +11,7 @@ export default function AgentScreen(
         <div className='w-3/5 flex items-center justify-center bg-gray-900 rounded-4xl'>
 
             <div className='min-w-150 min-h-100 flex justify-center items-center'>
-                <Chat ref={chatRef}/>
+                <Chat userChatRef={chatRef}/>
             </div>
 
             <div className=''>

@@ -1,9 +1,9 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
-const Chat = forwardRef((props, ref) => {
+const Chat = forwardRef((props, userChatRef) => {
   const [messages, setMessages] = useState([]);
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(userChatRef, () => ({
     addMessage: (text, senderIsUser) => {
       const sender = senderIsUser ? 'user' : 'bot';
       setMessages((prev) => [...prev, { sender, text }]);

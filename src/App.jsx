@@ -86,13 +86,15 @@ function App() {
       });
   
       const result = await response.json();
+
       console.log("API response:", result);
+      handleSendMessage(result.text, false)
     } catch (error) {
       console.error("Error sending voice to API:", error);
     }
   };
   
-
+  // 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Space' && !spacePressed) {
@@ -156,7 +158,7 @@ function App() {
   };
 
   const handleSendMessage = (message, who) => {
-    chatRef.current.addMessage(message, true);  // true = user
+    chatRef.current.addMessage(message, who);  // true = user
   };
 
   return (
@@ -178,22 +180,10 @@ function App() {
       
       {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <AgentScreen chatRef={chatRef} speaking={speaking} gender={true}
+          <AgentScreen userChatRef={chatRef} speaking={speaking} gender={true}
            language={"English"} flag={"sh"}/>
       </div>
 
-      {/* <button className='absolute top-0 left-0 bg-[#F7971D] w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
-      onClick={() => {
-        setSpeaking(true); // Start SiriWave
-        playVoice('/john.wav'); // Play audio, handle duration
-        handleSendMessage(introMessage, true)
-      }}
-      >
-
-              <div>
-                Click
-              </div>
-      </button> */}
     </div>
   )
 }
