@@ -20,8 +20,9 @@ function App() {
                     logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
                     a pet iguana.`
 
-  const dylanBio = `My name is Dylan. Why did the chicken cross the road?
-   Fuck you. I am funny`
+  const dylanBio = `My name is Dylan. I collect rare anime figurines. Do not touch my Asuka Langley Soryu I will attack!
+                    Why did the chicken cross the road?
+                    Fuck you. I am funny`
 
   // Intro Animation
   useEffect(() => {

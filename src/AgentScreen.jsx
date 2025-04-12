@@ -10,13 +10,13 @@ export default function AgentScreen(
 
     return (
         <>
-        <div className='w-4/5 flex h-230 items-center justify-center bg-[#1a1a1a] rounded-4xl p-10 gap-10'>
+        <div className='w-full flex h-screen items-center justify-center bg-[#1a1a1a] p-20 gap-10'>
 
             <div className='w-full h-full flex flex-col justify-between items-center gap-20'>
                 <div className='w-150 px-5 h-150 max-h-150 overflow-y-auto flex flex-col justify-center items-center shadow-[12px_12px_20px_rgba(0,0,0,0.4)]'>
                     <Chat ref={chatRef} chatColor={siriColor}/> 
                 </div>
-                <div className='flex gap-4 justify-between w-1/2 align-center'>
+                <div className='flex gap-4 justify-between w-[50%] align-center'>
                     <Microphone isRecording={listening}/>
                     <Switch isToggled={isToggled} onToggle={onToggle}/>
                 </div>
