@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import AgentScreen from './AgentScreen'
 
 
+
 function App() {
   const introRef = useRef(new Audio('/intro.mp3'))
   const voiceRef = useRef(null)
@@ -11,9 +12,9 @@ function App() {
   const [listening, setListening] = useState(false)
   const [lastId, setLastId] = useState(null)
   const chatRef = useRef();
-  const introMessage = `Good morning, John. Had a good night's sleep? 
-  Should we review your code today? Or would you like to continue pretending
-  to be a girl online?`
+  const [isToggled, setToggle] = useState(true)
+
+  const introMessage = "Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"
 
   const aliceBio = `My name is Alice. I like nothing more than going home early on a Friday afternoon, 
                     logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
@@ -103,7 +104,7 @@ function App() {
 
   const sendToAPI = async (audioBlob) => {
     const formData = new FormData();
-    formData.append("file", audioBlob, "speech.wav"); // pomembno: ime polja je "file", kot v curl
+    formData.append("file", audioBlob, "aliceIntro.wav"); // pomembno: ime polja je "file", kot v curl
   
     try {
       const response = await fetch("/api/v1/human/speech-to-text?language=en", {
@@ -236,8 +237,9 @@ function App() {
       {/*Agent Screen*/}
 
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          {/*Alice*/}
-          {/* <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking}
+          {
+            isToggled ? (
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled)}}
            name={"Alice"}
            gender={true}
            language={"English"} 
@@ -245,10 +247,11 @@ function App() {
            bio={aliceBio} 
            imageURL={"/alice.png"} 
            location={"London, UK"}
-           siriColor={"#F7971D"}/> */}
-
-          {/*Dylan*/}
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking}
+           siriColor={"#F7971D"}
+           initMsg={"Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"}/>)
+            : 
+           (
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled)}}
            name={"Dylan"}
            gender={false}
            language={"English"} 
@@ -256,8 +259,9 @@ function App() {
            bio={aliceBio} 
            imageURL={"/dylan.png"} 
            location={"Boston, USA"}
-           siriColor={"#F7971D"}/> 
-        
+           siriColor={"#2b60ff"}/>  
+          )
+          }
       </div>
 
     </div>
