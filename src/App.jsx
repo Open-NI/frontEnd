@@ -236,7 +236,7 @@ function App() {
       {/*Agent Screen*/}
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
           <AgentScreen chatRef={chatRef} name="Alice" listening={spacePressed} speaking={speaking} gender={true}
-           language={"English"} flag={"sh"} bio={aliceBio}/>
+           language={"English"} flag={"sh"} bio={aliceBio} imageURL={"/alice.png"} location={"London, UK"}/>
       </div>
 
     </div>

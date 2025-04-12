@@ -4,7 +4,7 @@ import Chat from './Chat'
 import Microphone from './Microphone'
 
 export default function AgentScreen(
-   {chatRef, speaking, name, listening, gender, language, flag, bio}
+   {chatRef, speaking, name, listening, gender, language, flag, bio, location, imageURL}
 
 ) {
 
@@ -27,8 +27,8 @@ export default function AgentScreen(
                 language={language}
                 flag={flag}
                 bio={bio}
-                imgUrl={"/mia.png"}
-                location={"London, UK"}
+                imgUrl={imageURL}
+                location={location}
                 />
             </div>
 
