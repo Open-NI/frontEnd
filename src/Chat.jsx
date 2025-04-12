@@ -11,12 +11,12 @@ const Chat = forwardRef((props, userChatRef) => {
   }));
 
   return (
-    <div className="w-full max-w-md p-4 bg-gray-900 rounded-lg space-y-2 text-white">
+    <div className="w-full  p-4  rounded-lg space-y-2 text-white">
       {messages.map((msg, index) => (
         <div
           key={index}
-          className={`p-2 text-black rounded ${index % 2 === 0 ? 'bg-[#F7971D]' : 'bg-gray-500'} ${
-            msg.sender === 'user' ? 'text-right' : 'bg-gray-700 text-left'
+          className={`p-2 rounded text-[20px] text-semibold border-gray-500 border-1 ${index % 2 === 0 ? 'bg-[#F7971D]  text-black text-left' : 'bg-gray-800 text-right text-white'} ${
+            msg.sender === 'user' ? 'text-right' : 'bg-gray-700'
           }`}
         >
           {msg.text}
