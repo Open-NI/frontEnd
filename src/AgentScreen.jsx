@@ -4,7 +4,7 @@ import Chat from './Chat'
 import Microphone from './Microphone'
 
 export default function AgentScreen(
-   {chatRef, speaking, name, listening, gender, language, flag, bio, location, imageURL}
+   {chatRef, speaking, name, listening, gender, language, flag, bio, location, imageURL, siriColor}
 
 ) {
 
@@ -29,6 +29,7 @@ export default function AgentScreen(
                 bio={bio}
                 imgUrl={imageURL}
                 location={location}
+                siriColor={siriColor}
                 />
             </div>
 

@@ -234,9 +234,28 @@ function App() {
       </div>
       
       {/*Agent Screen*/}
+
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
-          <AgentScreen chatRef={chatRef} name="Alice" listening={spacePressed} speaking={speaking} gender={true}
-           language={"English"} flag={"sh"} bio={aliceBio} imageURL={"/alice.png"} location={"London, UK"}/>
+          {/*Alice*/}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking}
+           gender={true}
+           language={"English"} 
+           flag={"sh"} 
+           bio={aliceBio} 
+           imageURL={"/alice.png"} 
+           location={"London, UK"}
+           siriColor={"#F7971D"}/>
+
+          {/*Dylan*/}
+          {/* <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking}
+           gender={false}
+           language={"English"} 
+           flag={"us"} 
+           bio={aliceBio} 
+           imageURL={"/dylan.png"} 
+           location={"Boston, USA"}
+           siriColor={"#F7971D"}/>  */}
+        
       </div>
 
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import AudioVisualizer from './Siri'
 
 
-export default function Agent({speaking, name, gender, language, flag, bio, imgUrl, location}) {
+export default function Agent({speaking, name, gender, language, flag, bio, imgUrl, location, siriColor}) {
 
     return (
         <div className='flex flex-col gap-6 min-h-180 min-w-120 max-w-120rounded-3x items-center p-10'>
@@ -15,18 +15,18 @@ export default function Agent({speaking, name, gender, language, flag, bio, imgU
                     <h1>{name}</h1>
                 </div>
 
-                <div className='absolute bottom-0 right-0'>
+                <div className='absolute bottom-0 right-0 w-1/2 h-100 object-contain'>
                     <img src={imgUrl} alt="" width={300}/>
                 </div>
                 
                 <div className='absolute bottom-0'>
-                    <AudioVisualizer playing={speaking}/>
+                    <AudioVisualizer playing={speaking} siriColor={siriColor}/>
                 </div>
         </div>
 
         <div className="w-4/5 h-full grid grid-cols-3 gap-4 items-center justify-center">
             <div className="flex flex-col items-center font-semibold text-white">
-                    <img src={gender ? "/female.svg" : "/male.svg"} alt="Female Icon" width={50} />
+                    <img src={gender ? "/female.svg" : "/male.svg"} alt="Female Icon" width={50}/>
                 <h1>{gender ? "Female" : "Male"}</h1>
             </div>
 
