@@ -8,14 +8,14 @@ export default function Agent({speaking, name, gender, language, flag, bio, imgU
         <div className='flex flex-col gap-6 min-h-180 min-w-120 max-w-120rounded-3x items-center p-10'>
 
 
-        <div className='relative bottom-0 right-0 w-full h-full min-h-120 rounded-2x'>
+        <div className='relative bottom-0 right-0 w-full h-full min-h-120 rounded-2x bg-red'>
 
                 <div className='absolute top-10 left-10 font-semibold text-[#9e9e9e] text-[60px]
                  bg-[#353535] px-10 rounded-2xl shadow-[8px_8px_20px_rgba(0,0,0,0.4)] '>
                     <h1>{name}</h1>
                 </div>
 
-                <div className='absolute bottom-0 right-0 w-1/2 h-100 object-contain'>
+                <div className='absolute bottom-0 right-0 w-1/2 h-100 object-cover'>
                     <img src={imgUrl} alt="" width={300}/>
                 </div>
                 
