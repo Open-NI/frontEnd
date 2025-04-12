@@ -2,11 +2,18 @@ import React from 'react'
 import AudioVisualizer from './Siri'
 
 
-export default function Agent({speaking, gender, language, flag}) {
+export default function Agent({speaking, name, gender, language, flag, bio}) {
 
     return (
-        <div className='flex flex-col gap-6 min-h-180 min-w-120 max-w-120rounded-3x items-center p-3'>
-            <div className='relative bottom-0 right-0 w-full h-full min-h-120 rounded-2x'>
+        <div className='flex flex-col gap-6 min-h-180 min-w-120 max-w-120rounded-3x items-center p-10'>
+
+
+        <div className='relative bottom-0 right-0 w-full h-full min-h-120 rounded-2x'>
+
+                <div className='absolute top-10 left-10 font-semibold text-[#636363] text-[60px]'>
+                    <h1>{name}</h1>
+                </div>
+
                 <div className='absolute bottom-0 right-0'>
                     <img src="/mia.png" alt="" width={300}/>
                 </div>
@@ -38,9 +45,7 @@ export default function Agent({speaking, gender, language, flag}) {
              <h1>About me</h1>
             </div>
             <div>
-                <p>My name is Alice. I like nothing more than going home early on a Friday afternoon, 
-                    logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
-                    a pet iguana.
+                <p>{bio}
                 </p>
             </div>
         </div>
