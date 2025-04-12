@@ -10,7 +10,11 @@ function App() {
   const [showNI, setShowNI] = useState(false)
   const [speaking, setSpeaking] = useState(false)
   const chatRef = useRef();
+  const introMessage = `Good morning, John. Had a good night's sleep? 
+  Should we review your code today? Or would you like to continue pretending
+  to be a girl online?`
 
+  // Intro Pornhub Animation
   useEffect(() => {
     const timeout = setTimeout(() => {
       // Show animation
@@ -23,6 +27,17 @@ function App() {
 
     return () => clearTimeout(timeout)
   }, [])
+
+  // Bot Greeting
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSpeaking(true); // Start SiriWave
+      playVoice('/john.wav'); // Play audio
+      handleSendMessage(introMessage, true); // Add message
+    }, 3000); // Delay in milliseconds (1000 = 1 second)
+  
+    return () => clearTimeout(timeout); // Cleanup if unmounted early
+  }, []);
 
   const playVoice = (url) => {
     if (voiceRef.current) {
@@ -48,11 +63,8 @@ function App() {
     );
   };
 
-  const handleSendMessage = () => {
-    chatRef.current.addMessage("Hi, I'm the user.", true);  // true = user
-    setTimeout(() => {
-      chatRef.current.addMessage("Hello! I'm the bot.", false); // false = bot
-    }, 1000);
+  const handleSendMessage = (message, who) => {
+    chatRef.current.addMessage(message, true);  // true = user
   };
 
   return (
@@ -76,7 +88,9 @@ function App() {
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
           <div className='w-full flex items-center justify-center'>
 
-              <Chat ref={chatRef}/>
+              <div className='min-w-150 min-h-100 flex justify-center items-center'>
+                <Chat ref={chatRef}/>
+              </div>
 
               <Agent 
               speaking={speaking}
@@ -87,19 +101,18 @@ function App() {
             </div>
       </div>
 
-      <button className='absolute top-0 left-0 bg-[#F7971D] w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
-      // onClick={() => {
-      //   setSpeaking(true); // Start SiriWave
-      //   playVoice('/john.wav'); // Play audio, handle duration
-      // }}>
-
-      onClick={handleSendMessage}
+      {/* <button className='absolute top-0 left-0 bg-[#F7971D] w-50 h-30 active:bg-gray-200 hover:cursor-pointer'
+      onClick={() => {
+        setSpeaking(true); // Start SiriWave
+        playVoice('/john.wav'); // Play audio, handle duration
+        handleSendMessage(introMessage, true)
+      }}
       >
 
               <div>
                 Click
               </div>
-      </button>
+      </button> */}
     </div>
   )
 }

@@ -15,8 +15,8 @@ const Chat = forwardRef((props, ref) => {
       {messages.map((msg, index) => (
         <div
           key={index}
-          className={`p-2 rounded ${
-            msg.sender === 'user' ? 'bg-blue-600 text-right' : 'bg-gray-700 text-left'
+          className={`p-2 text-black rounded ${index % 2 === 0 ? 'bg-[#F7971D]' : 'bg-gray-500'} ${
+            msg.sender === 'user' ? 'text-right' : 'bg-gray-700 text-left'
           }`}
         >
           {msg.text}
