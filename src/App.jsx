@@ -14,7 +14,7 @@ function App() {
   const chatRef = useRef();
   const [isToggled, setToggle] = useState(true)
   const toggledRef = useRef(isToggled)
-  const introMessage = "Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"
+  const introMessage = "Hi! How can I help you today?"
 
   const aliceBio = `My name is Alice. I like nothing more than going home early on a Friday afternoon, 
                     logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
@@ -274,7 +274,7 @@ function App() {
            imageURL={"/alice.png"} 
            location={"London, UK"}
            siriColor={"#F7971D"}
-           initMsg={"Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"}/>)
+           initMsg={"Hi! How can I help you today?"}/>)
             : 
            (
           <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {
