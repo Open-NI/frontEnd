@@ -5,7 +5,7 @@ import AudioVisualizer from './Siri'
 export default function Agent({speaking, name, gender, language, flag, bio, imgUrl, location, siriColor}) {
 
     return (
-        <div className='flex flex-col gap-6 min-h-180 min-w-120 max-w-120rounded-3x items-center p-10'>
+        <div className='flex flex-col gap-5 min-h-180 min-w-120 max-w-120rounded-3x items-center p-10'>
 
 
         <div className='relative bottom-0 right-0 w-full h-full min-h-120 rounded-2x bg-red'>

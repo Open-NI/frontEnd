@@ -230,7 +230,7 @@ function App() {
     <div className='w-full h-screen bg-[#000000] relative'>
       {/*Intro Screen*/}
       <div className="absolute w-full h-full bg-black z-4 flex justify-center items-center intro">
-        <div className="text-[100px] font-semibold text-[#FFFFFF] flex gap-2 w-full justify-center items-center">
+        <div className="OPEN opacity-0 text-[100px] font-semibold text-[#FFFFFF] flex gap-2 w-full justify-center items-center">
           <div>
             <h1>Open</h1>
           </div>
@@ -253,7 +253,7 @@ function App() {
                 <h1>Open</h1>
               </div>
 
-              <div className={`${isToggled ? "bg-[#F7971D]" : "bg-[#14b5de]"}  w-18 flex items-center justify-center rounded-2xl text-[#000000]`}>
+              <div className={`${isToggled ? "bg-[#F7971D]" : "bg-[#1de81a]"}  w-18 flex items-center justify-center rounded-2xl text-[#000000]`}>
                 <h1>NI</h1>
               </div>
             </div>
@@ -281,7 +281,7 @@ function App() {
            bio={dylanBio} 
            imageURL={"/dylan.png"} 
            location={"Boston, USA"}
-           siriColor={"#14b5de"}/>  
+           siriColor={"#1de81a"}/>  
           )
           }
       </div>
