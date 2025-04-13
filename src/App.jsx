@@ -246,6 +246,19 @@ function App() {
       {/*Agent Screen*/}
 
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
+
+          <div className="absolute top-3 left-3 w-60 h-16">
+            <div className="text-[50px] font-semibold text-[#FFFFFF] flex gap-2 w-full justify-center items-center">
+              <div>
+                <h1>Open</h1>
+              </div>
+
+              <div className={`${isToggled ? "bg-[#F7971D]" : "bg-[#14b5de]"}  w-18 flex items-center justify-center rounded-2xl text-[#000000]`}>
+                <h1>NI</h1>
+              </div>
+            </div>
+          </div>
+
           {
             isToggled ? (
           <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled); toggledRef.current = !toggledRef.current}}
