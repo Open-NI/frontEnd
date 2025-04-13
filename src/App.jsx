@@ -20,9 +20,9 @@ function App() {
                     logging into my 4Chan account and DDos-ing charity websites. I also like dogs and have
                     a pet iguana.`
 
-  const dylanBio = `My name is Dylan. I collect rare anime figurines. Do not touch my Asuka Langley Soryu I will attack!
+  const dylanBio = `My name is Dylan. I collect rare anime figurines. Do not touch my Asuka Langley Soryu or I will attack.
                     Why did the chicken cross the road?
-                    Fuck you. I am funny`
+                    Fuck you. I am funny.`
 
   // Intro Animation
   useEffect(() => {
@@ -201,6 +201,7 @@ function App() {
       voiceRef.current.pause();
     }
     voiceRef.current = new Audio(url);
+    
 
     // Get duration from metadata
     voiceRef.current.addEventListener(
@@ -220,7 +221,10 @@ function App() {
     );
   };
 
-  const handleSendMessage = (message, who) => {
+  const handleSendMessage = (message, who) => { 
+    if (who === true) {
+      setSpeaking(true)
+    }
     chatRef.current.addMessage(message, who);  // true = user
   };
 
@@ -266,7 +270,7 @@ function App() {
            bio={dylanBio} 
            imageURL={"/dylan.png"} 
            location={"Boston, USA"}
-           siriColor={"#2b60ff"}/>  
+           siriColor={"#14b5de"}/>  
           )
           }
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import "./microphone.css"
 
 
-export default function Microphone({isRecording}) {
+export default function Microphone({isRecording, micColor}) {
     return (
         <>
         <div className='flex flex-col justify-center items-center gap-5 w-60'>
