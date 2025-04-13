@@ -13,7 +13,7 @@ function App() {
   const [lastId, setLastId] = useState(null)
   const chatRef = useRef();
   const [isToggled, setToggle] = useState(true)
-
+  const toggledRef = useRef(isToggled)
   const introMessage = "Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"
 
   const aliceBio = `My name is Alice. I like nothing more than going home early on a Friday afternoon, 
@@ -128,10 +128,12 @@ function App() {
         handleSendMessage(result.text, false)
         const text = result.text
         console.log("Text:", text);
+        console.log("isToggled:", toggledRef.current);
+        console.log(toggledRef.current ? "af_heart" : "am_michael");
         const data = {
           user: "Micka",
           request_message: text,
-          voice: "af_heart",
+          voice: toggledRef.current ? "af_heart" : "am_michael",
         };
         
         const response2 = await fetch("/api/v1/action-runner/begin", {
@@ -244,7 +246,7 @@ function App() {
       <div className='absolute top-0 left-0 w-full h-full bg-[#0000000] flex items-center justify-center'>
           {
             isToggled ? (
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled)}}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled); toggledRef.current = !toggledRef.current}}
            name={"Alice"}
            gender={true}
            language={"English"} 
@@ -256,7 +258,7 @@ function App() {
            initMsg={"Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"}/>)
             : 
            (
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled)}}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled); toggledRef.current = !toggledRef.current}}
            name={"Dylan"}
            gender={false}
            language={"English"} 
