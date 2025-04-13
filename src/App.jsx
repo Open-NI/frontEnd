@@ -261,7 +261,11 @@ function App() {
 
           {
             isToggled ? (
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled); toggledRef.current = !toggledRef.current}}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {
+            setToggle(!isToggled); 
+            toggledRef.current = !toggledRef.current;
+            setTimeout(() => e.currentTarget.blur(), 0);
+          }}
            name={"Alice"}
            gender={true}
            language={"English"} 
@@ -273,7 +277,10 @@ function App() {
            initMsg={"Good morning, John. Had a good night's sleep? Should we review your code today? Or would you like to continue pretending to be a girl online?"}/>)
             : 
            (
-          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {setToggle(!isToggled); toggledRef.current = !toggledRef.current}}
+          <AgentScreen chatRef={chatRef} listening={spacePressed} speaking={speaking} isToggled={isToggled} onToggle={() => {
+            setToggle(!isToggled); 
+            toggledRef.current = !toggledRef.current;
+            setTimeout(() => e.currentTarget.blur(), 0);}}
            name={"Dylan"}
            gender={false}
            language={"English"} 

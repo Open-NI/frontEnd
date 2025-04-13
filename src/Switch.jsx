@@ -5,7 +5,7 @@ export default function Switch({isToggled, onToggle}) {
 
     return (
         <div className="flex justify-center items-center gap-5">
-            <button onClick={onToggle} className='hover:cursor-pointer'>
+            <button  onClick={onToggle} className='hover:cursor-pointer' >
                 <div className={`toggle-btn ${isToggled ? 'toggled' : ''}`}>
                     
                         <div className='thumb'></div>
