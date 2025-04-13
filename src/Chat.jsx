@@ -18,7 +18,7 @@ const Chat = forwardRef(({ chatColor }, userChatRef) => {
   }, [messages]);
 
   return (
-    <div className="w-4/5 p-10 rounded-lg space-y-2 text-white overflow-auto scrollbar-hide max-h-[75vh]">
+    <div className="w-4/5 flex flex-col gap-4 p-10 rounded-lg space-y-2 text-white overflow-auto scrollbar-hide max-h-[75vh]">
       {messages.map((msg, index) => (
         <div
           key={index}

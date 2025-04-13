@@ -183,8 +183,6 @@ function App() {
   }, []);
 
   
-
-
   // Bot Greeting
   useEffect(() => {
     const timeout = setTimeout(() => {
