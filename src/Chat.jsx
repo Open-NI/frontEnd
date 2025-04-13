@@ -28,7 +28,8 @@ const Chat = forwardRef(({ chatColor }, userChatRef) => {
           `}
           style={msg.sender === 'user' ? { backgroundColor: `${chatColor}` } : {}}
         >
-          <ReactMarkdown>{msg.text}</ReactMarkdown>
+          {msg.text.endsWith('.jpg') ? <img src={msg.text} alt="image" /> : <ReactMarkdown>{msg.text}</ReactMarkdown>}
+          
         </div>
       ))}
       {/* Invisible div to scroll to */}
